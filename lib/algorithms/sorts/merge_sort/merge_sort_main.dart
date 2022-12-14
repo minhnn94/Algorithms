@@ -1,3 +1,5 @@
+import 'package:untitled/common/array_common.dart';
+
 List<int> mergeSort(List<int> array) {
   if (array.length <= 1) {
     return array;
@@ -24,36 +26,30 @@ List<int> merge(List<int> leftArray, List<int> rightArray) {
   while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
     if (leftArray[leftIndex] >= rightArray[rightIndex]) {
       array.add(rightArray[rightIndex]);
-      if (rightArray.length - 1 > rightIndex) {
+      if (rightArray.length > rightIndex) {
         rightIndex++;
       }
     } else {
       array.add(leftArray[leftIndex]);
-      if (leftArray.length - 1 > leftIndex) {
+      if (leftArray.length > leftIndex) {
         leftIndex++;
       }
     }
   }
-  return array;
-}
-
-List<int> recursiveCompare(List<int> array) {
-  if (array.length > 2) {
-    int leftIndex = 0;
-    int rightIndex = (array.length + 1) ~/ 2;
-    return recursiveCompare(array.sublist(leftIndex, rightIndex));
-    // recursiveCompare(array.sublist(rightIndex, array.length));
-  } else {
-    int temp = array.first;
-    array[0] = array.last;
-    array.last = temp;
-    return array;
-  }
+  return [
+    ...array,
+    ...leftArray.sublist(leftIndex),
+    ...rightArray.sublist(rightIndex)
+  ];
 }
 
 void main() {
-  // List<int> array = [9, 2, 3, 8, 6, 123, 12, 23, 45, 6, 3, 78, 6, 4];
-  List<int> array = [4, 3, 2, 1, 5];
-  array = mergeSort(array);
-  print(array.toString());
+  List<int> array = [9, 2, 3, 8, 6, 123, 12, 23, 45, 6, 3, 78, 6, 4];
+  // List<int> array = [4, 3, 2, 1, 5];
+  Stopwatch stopwatch = new Stopwatch()..start();
+  // final array = insertionSort(array100K);
+  array = mergeSort(array100K);
+
+  print('InsertionSort() executed in ${stopwatch.elapsed}');
+  // print(array.toString());
 }

@@ -14,8 +14,9 @@ List<int> insertionSort(List<int> array) {
 }
 
 void main() {
+  List<int> array = [9, 2, 3, 8, 6, 123, 12, 23, 45, 6, 3, 78, 6, 4];
   Stopwatch stopwatch = new Stopwatch()..start();
-  final array = insertionSort([1232]);
+  array = insertionSort(array100K);
   print('InsertionSort() executed in ${stopwatch.elapsed}');
   // print(array);
 }
